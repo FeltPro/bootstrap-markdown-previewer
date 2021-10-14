@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <script src="./marked.js"></script>
+    <script src="./defaulttext.html"></script>
+
+    <script>
+      console.log(marked(markdownString));
+      function concomitantPreview() {
+      let previewElement = document.getElementById("preview");
+      let editorValue = document.getElementById("editor").value;
+      let markedUpHTML = marked(editorValue);
+      previewElement.innerHTML = markedUpHTML;
+      }
+
+      function setDefault() {
+        let defaultText =
+`# Welcome to my React Markdown Previewer!
+
+## This is a sub-heading...
+### And here's some other cool stuff:
+
+Heres some code, \`<div></div>\`, between 2 backticks.
+
+\`\`\`
+// this is multi-line code:
+
+function anotherExample(firstLine, lastLine) {
+  if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
+    return multiLineCode;
+  }
+}
+\`\`\`
+
+You can also make text **bold**... whoa!
+Or _italic_.
+Or... wait for it... **_both!_**
+And feel free to go crazy ~~crossing stuff out~~.
+
+There's also [links](https://www.freecodecamp.org), and
+> Block Quotes!
+
+And if you want to get really crazy, even tables:
+
+Wild Header | Crazy Header | Another Header?
+
+------------ | ------------- | -------------
+
+Your content can | be here, and it | can be here....
+And here. | Okay. | I think we get it.
+
+- And of course there are lists.
+  - Some are bulleted.
+     - With different indentation levels.
+        - That look like this.
+
+
+1. And there are numbered lists too.
+1. Use just 1s if you want!
+1. And last but not least, let's not forget embedded images:
+
+![The two states of every programmer](https://www.memesmonkey.com/images/memesmonkey/fd/fd4922b74a6d78598540a50534415126.jpeg)
+`;
+        let editorField = document.getElementById("editor");
+        let previewField = document.getElementById("preview");
+        editorField.value = defaultText;
+        previewField.innerHTML = marked(defaultText);
+      }
+    </script>
+  </head>
+  <body onload="setDefault()">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col text-center text-white bg-dark">
+          <h1>Markdown Previewer</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 text-center bg-secondary d-flex flex-column">
+          <h2 class="text-white text-center my-3">Editor</h2>
+          <div class="form-group flex-grow-1 d-flex flex-column">
+          <textarea id="editor" onkeyup="concomitantPreview()" class="form-control flex-grow-1"></textarea>
+        </div>
+        </div>
+        <div class="col-6 text-center bg-light">
+          <div class="text-center my-3" id="preview"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
+</html>
